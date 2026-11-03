@@ -110,6 +110,7 @@ term.clear()
    end
   else
     path = "init.lua"
+    inst = 1
   end
   term.clear()
   print("MultiReactOS Setup V1.0")
@@ -723,7 +724,7 @@ end
 end
 
  if( autorn == "y" ) then
-  programname = init.lua
+  programname = "init.lua"
  end
  term.clear()
  print("MultiReactOS Setup V1.0")
