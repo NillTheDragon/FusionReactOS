@@ -37,22 +37,22 @@ end
  print("3. Fission Reactor controller")
  print("4. Molten Salt Reactor controller")
  print("5. Geiger Counter reader")
- print("6. Make program autorun")
- print("7. Make eeprom readonly")
- print("8. Help / info")
- print("9. Exit")
+-- print("6. Make program autorun")
+ print("6. Make eeprom readonly")
+ print("7. Help / info")
+ print("8. Exit")
  program = tonumber(io.read())
-if(program == 8) then
+if(program == 7) then
  term.clear()
  print("- help/info text here -")
  event.pull("key_down")
 end
+--if( program == 6 ) then
+--  print(" ")
+--  print("This code hasn't been written yet")
+--  event.pull("key_down")
+--end
 if( program == 6 ) then
-  print(" ")
-  print("This code hasn't been written yet")
-  event.pull("key_down")
-end
-if( program == 7 ) then
  term.clear()
  print("MultiReactOS Setup V1.0")
  print(" ")
@@ -99,10 +99,17 @@ term.clear()
     wrp = 0
    end
  else
-  print("Installation path? Default: /usr/bin")
-  path = tostring(io.read())
-  if path == "" then
-   path = "/usr/bin"
+  print("Set program as autorun? [Y/n]")
+  print(" ")
+  autorn = string.lower(tostring(io.read()))
+  if( autorn == "n" ) then
+   print("Installation path? Default: /usr/bin")
+   path = tostring(io.read())
+   if path == "" then
+    path = "/usr/bin"
+   end
+  else
+    path == "init.lua"
   end
   term.clear()
   print("MultiReactOS Setup V1.0")
@@ -714,7 +721,10 @@ computer.pullSignal(dt)
 end
 ]======]
 end
- 
+
+ if( autorn == "y" ) then
+  programname = init.lua
+ end
  term.clear()
  print("MultiReactOS Setup V1.0")
  print(" ")
@@ -763,7 +773,9 @@ end
     cleanup()
     os.exit()
    end
-   path = path .. "/" .. programname .. ".lua"
+   if( autorn == "n" ) then
+    path = path .. "/" .. programname .. ".lua"
+   end
    if fs.exists(path) then
     computer.beep(2000, 0.5)
     print("Another "..programname.." founded in this path")
