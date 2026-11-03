@@ -109,7 +109,7 @@ term.clear()
     path = "/usr/bin"
    end
   else
-    path == "init.lua"
+    path = "init.lua"
   end
   term.clear()
   print("MultiReactOS Setup V1.0")
